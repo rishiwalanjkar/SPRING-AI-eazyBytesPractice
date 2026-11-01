@@ -4,10 +4,7 @@ import com.springai.helloworld.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -17,8 +14,8 @@ public class ChatController {
 
     private final ChatService chatService;
 
-    @GetMapping("/{message}")
-    public ResponseEntity<String> getLLMResponse(@PathVariable String message) {
+    @GetMapping
+    public ResponseEntity<String> getLLMResponse(@RequestParam String message) {
         log.trace("getLLMResponse() started..");
         String response = chatService.getLLMResponse(message);
         log.trace("getLLMResponse() endeded..");
